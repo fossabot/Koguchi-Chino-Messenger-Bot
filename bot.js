@@ -76,7 +76,7 @@ function receivedMessage(event) {
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
   var message = event.message;
-  setPersistentMenu(senderID);
+  // setPersistentMenu(senderID);
   console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
@@ -201,7 +201,7 @@ function sendLoliPhoto(recipientId) {
   callSendAPI(messageData);
 }
 
-function setPersistentMenu(recipientId) {
+/* function setPersistentMenu(recipientId) {
   var messageData = {
     persistent_menu: [{
       call_to_actions: [
@@ -221,7 +221,7 @@ function setPersistentMenu(recipientId) {
     }]
   }
   callSendAPI(messageData);
-}
+} */
 
 function callSendAPI(messageData) {
   request({
