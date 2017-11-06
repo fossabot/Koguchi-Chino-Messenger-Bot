@@ -1,18 +1,26 @@
 {
-  "name": "koguchi-chino-messenger-bot",
-  "version": "0.1.0",
-  "private": true,
+  "name": "messenger-bot",
+  "version": "1.0.0",
+  "description": "Messenger Platform QuickStart Demo",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node bot.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vernon99/messenger-quick-start.git"
+  },
+  "keywords": [
+    "messenger",
+    "bot",
+    "quickstart"
+  ],
+  "author": "Mikhail Larionov <mlarionov@fb.com>",
+  "license": "MIT",
+  "homepage": "https://developers.facebook.com/docs/messenger-platform/guides/quick-start",
   "dependencies": {
-    "bottender": "0.14.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.12.1"
-  },
-  "engines": {
-    "node": ">= 7.6.0"
+    "request": "^2.72.0",
+    "express": "*",
+    "body-parser": "*"
   }
 }
