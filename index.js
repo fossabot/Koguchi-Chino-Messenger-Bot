@@ -17,6 +17,6 @@ const server = createServer(bot, {
   verifyToken: config.verifyToken
 });
 
-server.listen(5050, () => {
-  console.log('server is running on 5050 port...');
+server.listen(443, () => {
+  console.log('server is running on 443 port...');
 });
