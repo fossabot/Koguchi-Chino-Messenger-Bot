@@ -185,7 +185,7 @@ function sendGenericMessage(recipientId) {
 
 function sendLoliPhoto(recipientId) {
   var messageData = {
-    "recipient": {
+    recipient: {
       id: recipientId
     },
     message: {
