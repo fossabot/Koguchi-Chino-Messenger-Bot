@@ -94,6 +94,7 @@ function receivedMessage(event) {
         break;
       case 'loli':
         sendLoliPhoto(senderID);
+        break;
       default:
         sendTextMessage(senderID, messageText);
     }
