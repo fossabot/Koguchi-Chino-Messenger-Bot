@@ -92,7 +92,8 @@ function receivedMessage(event) {
       case 'generic':
         sendGenericMessage(senderID);
         break;
-
+      case 'loli':
+        sendLoliPhoto(senderID);
       default:
         sendTextMessage(senderID, messageText);
     }
@@ -177,6 +178,25 @@ function sendGenericMessage(recipientId) {
       }
     }
   };  
+
+  callSendAPI(messageData);
+}
+
+function sendLoliPhoto(recipientId) {
+  var messageData = {
+    "recipient": {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "image",
+        payload: {
+          url: "https://static.zerochan.net/Kanna.Kamui.full.2070108.jpg",
+          is_reusable: true
+        }
+      }
+    }
+  } 
 
   callSendAPI(messageData);
 }
