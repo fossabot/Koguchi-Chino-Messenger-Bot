@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const cheerio = require('cheerio');
 const request = require('request');
 const path = require('path');
-var messengerButton = "<html><head><title>Facebook Messenger Bot</title></head><body><h1>Facebook Messenger Bot</h1>This is a bot based on Messenger Platform QuickStart. For more details, see their <a href=\"https://developers.facebook.com/docs/messenger-platform/guides/quick-start\">docs</a>.<script src=\"https://button.glitch.me/button.js\" data-style=\"glitch\"></script><div class=\"glitchButton\" style=\"position:fixed;top:20px;right:20px;\"></div></body></html>";
+var messengerButton = "<html><head><title>Koguchi Chino Messenger Bot</title></head><body><h1>Koguchi Chino Messenger Bot</h1><script src=\"https://button.glitch.me/button.js\" data-style=\"glitch\"></script><div class=\"glitchButton\" style=\"position:fixed;top:20px;right:20px;\"></div></body></html>";
 
 // The rest of the code implements the routes for our Express server.
 let app = express();
