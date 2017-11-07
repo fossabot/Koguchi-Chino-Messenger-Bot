@@ -17,7 +17,7 @@
   ],
   "author": "Edison Lee <edisonlee@edisonlee55.com>",
   "license": "MIT",
-  "homepage": "https://www.facebook.com/pg/Koguchi-Chino-293260604502189",
+  "homepage": "https://www.facebook.com/koguchi.chino",
   "dependencies": {
     "body-parser": "*",
     "cheerio": "^1.0.0-rc.2",
