@@ -111,7 +111,7 @@ function receivedMessage(event) {
       case '開始使用':
         sendStartMessage(senderID);
         break;
-      case 'satrt':
+      case 'start':
         sendStartMessage(senderID);
         break;
       case 'loli':
