@@ -74,18 +74,17 @@ app.post('/webhook', function (req, res) {
 function getPixivImgLink(url, callback) {
   var links = [];
   request(url, function (err, res, body) {
-      if (!err && res.statusCode == 200) {
-          var $ = cheerio.load(body);
-          $("#js-mount-point-search-result-list").each(function (index, element) { 
-              var data = element.attribs['data-items'];
-              data = JSON.parse(data);
-              for(var i = 0; i<data.length;i++)
-              {
-                  links.push(data[i].url);
-              }
-          });
-          callback(links);
-      };
+    if (!err && res.statusCode == 200) {
+      var $ = cheerio.load(body);
+      $("#js-mount-point-search-result-list").each(function (index, element) {
+        var data = element.attribs['data-items'];
+        data = JSON.parse(data);
+        for (var i = 0; i < data.length; i++) {
+          links.push(data[i].url);
+        }
+      });
+      callback(links);
+    };
   });
 }
 
@@ -204,24 +203,24 @@ function sendGenericMessage(recipientId) {
 }
 
 function sendLoliPhoto(recipientId) {
-  getPixivImgLink('https://www.pixiv.net/search.php?s_mode=s_tag_full&word=%E3%83%AD%E3%83%AA',function(links){
-    var imgurl = links[Math.round(Math.random()*links.length)];
-  });
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "image",
-        payload: {
-          url: imgurl,
-          is_reusable: true
+  getPixivImgLink('https://www.pixiv.net/search.php?s_mode=s_tag_full&word=%E3%83%AD%E3%83%AA', function (links) {
+    var imgurl = links[Math.round(Math.random() * links.length)];
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "image",
+          payload: {
+            url: imgurl,
+            is_reusable: true
+          }
         }
       }
     }
-  }
-  callSendAPI(messageData);
+    callSendAPI(messageData);
+  });
 }
 
 /* function setPersistentMenu(recipientId) {
