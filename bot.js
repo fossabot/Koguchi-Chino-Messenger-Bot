@@ -147,10 +147,10 @@ function receivedPostback(event) {
 
   switch (payload) {
     case 'SEND_CHINO_PHOTO':
-      sendChinoPhoto(recipientID);
+      sendChinoPhoto(senderID);
       break;
     case 'SEND_LOLI_PHOTO':
-      sendLoliPhoto(recipientID);
+      sendLoliPhoto(senderID);
       break;
     default:
       console.error("Unexpected payload: " + payload);
