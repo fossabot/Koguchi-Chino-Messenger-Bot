@@ -108,6 +108,12 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches a keyword
     // and send back the template example. Otherwise, just echo the text we received.
     switch (messageText) {
+      case '開始使用':
+        sendStartMessage(senderID);
+        break;
+      case 'satrt':
+        sendStartMessage(senderID);
+        break;
       case 'loli':
         sendLoliPhoto(senderID);
         break;
@@ -121,10 +127,10 @@ function receivedMessage(event) {
         sendLoliPhoto(senderID);
         break;
       default:
-        sendTextMessage(senderID, messageText);
+        sendDefaultMessage(senderID, messageText);
     }
   } else if (messageAttachments) {
-    sendTextMessage(senderID, "Message with attachment received");
+    sendDefaultMessage(senderID);
   }
 }
 
@@ -154,13 +160,88 @@ function receivedPostback(event) {
 //////////////////////////
 // Sending helpers
 //////////////////////////
-function sendTextMessage(recipientId, messageText) {
+function sendStartMessage(recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      text: "請選擇您需要的功能:",
+      text: "感謝您加入 Koguchi Chino Messenger Bot，請選擇您需要的功能:",
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: "我要看智乃!",
+            subtitle: "",
+            image_url: "https://cdn.edisonlee55.com/edisonlee55/resources/photo/313cc54d-25ad-4119-8b3b-1aadc0787564.png",
+            buttons: [{
+              type: "postback",
+              title: "來張智乃照片!",
+              payload: "SEND_CHINO_PHOTO",
+            }],
+          }, {
+            title: "我要看蘿莉!",
+            subtitle: "",
+            image_url: "https://cdn.edisonlee55.com/edisonlee55/resources/photo/0cef8f2d-611a-403a-a768-0b1cd8ebfab1.jpg",
+            buttons: [{
+              type: "postback",
+              title: "來張蘿莉照片!",
+              payload: "SEND_LOLI_PHOTO",
+            }]
+          }]
+        }
+      },
+      quick_replies: [
+        {
+          content_type: "text",
+          title: "來張智乃照片!",
+          payload: "SEND_CHINO_PHOTO",
+        },
+        {
+          content_type: "text",
+          title: "來張蘿莉照片!",
+          payload: "SEND_LOLI_PHOTO",
+        }
+      ]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendDefaultMessage(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: "抱歉，但系統並不了解您的指令，請選擇您需要的功能:",
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: "我要看智乃!",
+            subtitle: "",
+            image_url: "https://cdn.edisonlee55.com/edisonlee55/resources/photo/313cc54d-25ad-4119-8b3b-1aadc0787564.png",
+            buttons: [{
+              type: "postback",
+              title: "來張智乃照片!",
+              payload: "SEND_CHINO_PHOTO",
+            }],
+          }, {
+            title: "我要看蘿莉!",
+            subtitle: "",
+            image_url: "https://cdn.edisonlee55.com/edisonlee55/resources/photo/0cef8f2d-611a-403a-a768-0b1cd8ebfab1.jpg",
+            buttons: [{
+              type: "postback",
+              title: "來張蘿莉照片!",
+              payload: "SEND_LOLI_PHOTO",
+            }]
+          }]
+        }
+      },
       quick_replies: [
         {
           content_type: "text",
