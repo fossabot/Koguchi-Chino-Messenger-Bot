@@ -166,7 +166,7 @@ function sendTextMessage(recipientId, messageText) {
 }
 
 function sendLoliPhoto(recipientId) {
-  getPixivImgLink('https://www.pixiv.net/search.php?s_mode=s_tag_full&word=%E3%83%AD%E3%83%AA', function (links) {
+  getPixivImgLink('https://www.pixiv.net/search.php?word=ロリ&s_mode=s_tag_full&order=date_d&p='+Math.round(1+Math.random()*100), function (links) {
     var imgurl = links[Math.round(Math.random() * links.length)];
     var messageData = {
       recipient: {
