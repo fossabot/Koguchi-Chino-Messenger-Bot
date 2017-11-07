@@ -161,12 +161,19 @@ function receivedPostback(event) {
 // Sending helpers
 //////////////////////////
 function sendStartMessage(recipientId) {
-  var messageData = {
+  var textMessageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      text: "感謝您加入 Koguchi Chino Messenger Bot，請選擇您需要的功能:",
+      text: "感謝您加入 Koguchi Chino Messenger Bot，請選擇您需要的功能:"
+    }
+  }
+  var attachmentMessageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
       attachment: {
         type: "template",
         payload: {
@@ -207,16 +214,24 @@ function sendStartMessage(recipientId) {
     }
   };
 
-  callSendAPI(messageData);
+  callSendAPI(textMessageData);
+  callSendAPI(attachmentMessageData);
 }
 
 function sendDefaultMessage(recipientId) {
-  var messageData = {
+  var textMessageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      text: "抱歉，但系統並不了解您的指令，請選擇您需要的功能:",
+      text: "抱歉，但系統並不了解您的指令，請選擇您需要的功能:"
+    }
+  }
+  var attachmentMessageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
       attachment: {
         type: "template",
         payload: {
@@ -257,7 +272,8 @@ function sendDefaultMessage(recipientId) {
     }
   };
 
-  callSendAPI(messageData);
+  callSendAPI(textMessageData);
+  callSendAPI(attachmentMessageData);
 }
 
 function sendChinoPhoto(recipientId) {
