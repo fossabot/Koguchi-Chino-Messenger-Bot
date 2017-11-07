@@ -214,7 +214,7 @@ function sendLoliPhoto(recipientId) {
           type: "image",
           payload: {
             url: imgurl,
-            is_reusable: true
+            is_reusable: false
           }
         }
       }
