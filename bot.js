@@ -4,6 +4,7 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
+const cheerio = require('cheerio');
 const request = require('request');
 const path = require('path');
 var messengerButton = "<html><head><title>Facebook Messenger Bot</title></head><body><h1>Facebook Messenger Bot</h1>This is a bot based on Messenger Platform QuickStart. For more details, see their <a href=\"https://developers.facebook.com/docs/messenger-platform/guides/quick-start\">docs</a>.<script src=\"https://button.glitch.me/button.js\" data-style=\"glitch\"></script><div class=\"glitchButton\" style=\"position:fixed;top:20px;right:20px;\"></div></body></html>";
@@ -68,6 +69,25 @@ app.post('/webhook', function (req, res) {
     res.sendStatus(200);
   }
 });
+
+
+function getPixivImgLink(url, callback) {
+  var links = [];
+  request(url, function (err, res, body) {
+      if (!err && res.statusCode == 200) {
+          var $ = cheerio.load(body);
+          $("#js-mount-point-search-result-list").each(function (index, element) { 
+              var data = element.attribs['data-items'];
+              data = JSON.parse(data);
+              for(var i = 0; i<data.length;i++)
+              {
+                  links.push(data[i].url);
+              }
+          });
+          callback(links);
+      };
+  });
+}
 
 
 // Incoming events handling
@@ -184,6 +204,9 @@ function sendGenericMessage(recipientId) {
 }
 
 function sendLoliPhoto(recipientId) {
+  getPixivImgLink('https://www.pixiv.net/search.php?s_mode=s_tag_full&word=%E3%83%AD%E3%83%AA',function(links){
+    var imgurl = links[Math.round(Math.random()*links.length)];
+  });
   var messageData = {
     recipient: {
       id: recipientId
@@ -192,7 +215,7 @@ function sendLoliPhoto(recipientId) {
       attachment: {
         type: "image",
         payload: {
-          url: "https://static.zerochan.net/Kanna.Kamui.full.2070108.jpg",
+          url: imgurl,
           is_reusable: true
         }
       }

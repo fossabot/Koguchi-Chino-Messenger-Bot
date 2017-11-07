@@ -19,8 +19,9 @@
   "license": "MIT",
   "homepage": "https://www.facebook.com/pg/Koguchi-Chino-293260604502189",
   "dependencies": {
-    "request": "^2.72.0",
+    "body-parser": "*",
+    "cheerio": "^1.0.0-rc.2",
     "express": "*",
-    "body-parser": "*"
+    "request": "^2.72.0"
   }
 }
