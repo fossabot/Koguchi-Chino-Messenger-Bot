@@ -111,6 +111,12 @@ function receivedMessage(event) {
       case 'loli':
         sendLoliPhoto(senderID);
         break;
+      case 'chino':
+        sendChinoPhoto(senderID);
+        break;
+      case '來張智乃照片!':
+        sendChinoPhoto(senderID);
+        break;
       case '來張蘿莉照片!':
         sendLoliPhoto(senderID);
         break;
@@ -134,6 +140,9 @@ function receivedPostback(event) {
     "at %d", senderID, recipientID, payload, timeOfPostback);
 
   switch (payload) {
+    case 'SEND_CHINO_PHOTO':
+      sendChinoPhoto(recipientID);
+      break;
     case 'SEND_LOLI_PHOTO':
       sendLoliPhoto(recipientID);
       break;
@@ -155,6 +164,11 @@ function sendTextMessage(recipientId, messageText) {
       quick_replies: [
         {
           content_type: "text",
+          title: "來張智乃照片!",
+          payload: "SEND_CHINO_PHOTO",
+        },
+        {
+          content_type: "text",
           title: "來張蘿莉照片!",
           payload: "SEND_LOLI_PHOTO",
         }
@@ -165,7 +179,7 @@ function sendTextMessage(recipientId, messageText) {
   callSendAPI(messageData);
 }
 
-function sendLoliPhoto(recipientId) {
+function sendChinoPhoto(recipientId) {
   getPixivImgLink('https://www.pixiv.net/search.php?word=%E6%99%BA%E4%B9%83&order=date_d&p=' + Math.round(1 + Math.random() * 150), function (links) {
     var imgurl = links[Math.round(Math.random() * links.length - 1)];
     var messageData = {
@@ -181,6 +195,44 @@ function sendLoliPhoto(recipientId) {
           }
         },
         quick_replies: [
+          {
+            content_type: "text",
+            title: "來張智乃照片!",
+            payload: "SEND_CHINO_PHOTO",
+          },
+          {
+            content_type: "text",
+            title: "來張蘿莉照片!",
+            payload: "SEND_LOLI_PHOTO",
+          }
+        ]
+      }
+    }
+    callSendAPI(messageData);
+  });
+}
+
+function sendLoliPhoto(recipientId) {
+  getPixivImgLink('https://www.pixiv.net/search.php?word=%E3%83%AD%E3%83%AA%20OR%20(%20loli%20)&order=date_d&p=' + Math.round(1 + Math.random() * 1000), function (links) {
+    var imgurl = links[Math.round(Math.random() * links.length - 1)];
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "image",
+          payload: {
+            url: imgurl,
+            is_reusable: false
+          }
+        },
+        quick_replies: [
+          {
+            content_type: "text",
+            title: "來張智乃照片!",
+            payload: "SEND_CHINO_PHOTO",
+          },
           {
             content_type: "text",
             title: "來張蘿莉照片!",
