@@ -179,7 +179,14 @@ function sendLoliPhoto(recipientId) {
             url: imgurl,
             is_reusable: false
           }
-        }
+        },
+        quick_replies: [
+          {
+            content_type: "text",
+            title: "來張蘿莉照片!",
+            payload: "SEND_LOLI_PHOTO",
+          }
+        ]
       }
     }
     callSendAPI(messageData);
