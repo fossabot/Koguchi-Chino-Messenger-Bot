@@ -388,5 +388,7 @@ function callSendAPI(messageData) {
 
 // Set Express to listen out for HTTP requests
 var server = app.listen(process.env.PORT || 3000, function () {
+  console.log("Koguchi Chino Messenger Bot v1.0");
+  console.log("Copyright (c) 2017 MING-CHIEN LEE. All rights reserved.\n");
   console.log("Listening on port %s", server.address().port);
 });
