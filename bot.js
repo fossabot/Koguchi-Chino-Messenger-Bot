@@ -1,5 +1,5 @@
 //
-// This is main file containing code implementing the Express server and functionality for the Express echo bot.
+// This is main file containing code implementing the Express server and functionality for the Express Koguchi Chino Messenger bot.
 //
 'use strict';
 const express = require('express');
